@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hair Donation Company Reviews</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css"/>
+        <script type="text/javascript" src="js/jquery.js"></script>
+       <!--Navigation bar with the app name and button to add a local store-->
+       <nav class="navbar navbar-light bg-light" id="nav">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Hair Donation Company Reviews</span>              
+        </div>
+    </nav><br>
+        <title>Places Search Box</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <!--<script src="./index.js"></script>1-->
+        
+        
+        <script> function initMap() {
+          const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -33.8688, lng: 151.2195 },
+            zoom: 13,
+            mapTypeId: "roadmap", 
+          });
+          // Create the search box and link it to the UI element.
+          const input = document.getElementById("pac-input");
+          const searchBox = new google.maps.places.SearchBox(input);
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+          // Bias the SearchBox results towards current map's viewport.
+          map.addListener("bounds_changed", () => {
+            searchBox.setBounds(map.getBounds());
+          });
+          let markers = [];
+          // Listen for the event fired when the user selects a prediction and retrieve
+          // more details for that place.
+          searchBox.addListener("places_changed", () => {
+            const places = searchBox.getPlaces();
+        
+            if (places.length == 0) {
+              return;
+            }
+            // Clear out the old markers.
+            markers.forEach((marker) => {
+              marker.setMap(null);
+            });
+            markers = [];
+            // For each place, get the icon, name and location.
+            const bounds = new google.maps.LatLngBounds();
+            places.forEach((place) => {
+              if (!place.geometry || !place.geometry.location) {
+                console.log("Returned place contains no geometry");
+                return;
+              }
+              const icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25),
+              };
+              // Create a marker for each place.
+              markers.push(
+                new google.maps.Marker({
+                  map,
+                  icon,
+                  title: place.name,
+                  position: place.geometry.location,
+                })
+              );
+        
+              if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+              } else {
+                bounds.extend(place.geometry.location);
+              }
+            });
+            map.fitBounds(bounds);
+          });
+        }
+        
+        </script>
+
+      </head>
+      <body>
+        Search for a hairdresser near you to donate today:
+        <input
+          id="pac-input"
+          class="controls"
+          type="text"
+          placeholder="Search Box"
+        />
+        <div id="map"></div>
+    
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script
+          async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5DDZ0dNxH4iKXSNAnUG5JbO6SVMKfxOE&callback=initMap"          
+        ></script>
+
+        <style>            
+            .horizontal-center {
+              margin: 0;
+              position: absolute;
+              left: 50%;
+              -ms-transform: translateY(-50%);
+              transform: translateY(-50%);        
+            }
+
+            body{
+                display: block;
+                margin: 15px;
+            }
+
+        </style>
+
+<br>
+
+        <!--Search by keyword -->
+        <h3>Search a Donation Company</h2>   
+        <div class="input-group mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Keyword..." aria-label="Keyword..." aria-describedby="button-addon2" onkeyup="myFunction()">
+        </div><br>
+
+
+        <!--Hard coded data since my database would not work-->
+        <table class="table table-striped" id="reviewTable" style="width: 100%">
+                <colgroup>                                
+                   <col span="1" style="width: 20%;">
+                   <col span="1" style="width: 50%;">
+                   <col span="1" style="width: 30%;">     
+                </colgroup>
+            <thead>
+                <tr id="tableHeader">
+                  <th scope="col">Donation Company</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Review</th>                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Locks of Love</td>
+                  <td>Locks of Love may be the most popular hair donation organization. Since 1997, Locks of Love has made hundreds of wigs, or “prostheses” as they call them, each year. This organization creates wigs from real hair specifically for children to address issues with “traditional” wigs that are too large, too rough and not offered in children’s styles.</td>
+                  <td>I can't support an organization that takes donated hair that people think is being used to make a wig for someone with cancer and instead charges recipients for the wings they make. Also, if you actually message the company as a person with cancer? You still don't qualify because cancer isn't always a permanent condition. everything may look great on the surface, but this organization (in my opinion) is just downright shady.
+                  </td>      
+                </tr>
+                <tr>
+                  <td>Wigs for Kids</td>
+                  <td>Founded in 1981, Wigs for Kids is one of the longest-running hair donation organizations in the U.S. Founded by Jeffrey Paul and his wife, the organization has developed wigs for kids that can “withstand typical kid activities.” They do not outsource their wig creation to manufacturers, and the wigs are designed for high levels of activity,</td>
+                  <td>I love how they do not charge the kids for wigs! It is such a great organization.</td>
+                </tr>
+                <tr>
+                  <td>Hair We Share</td>
+                  <td>Founded in 2014, Hair We Share donates real hair wigs to children under 18 and adults facing financial hardships. Most wigs go to people who have medical conditions or chemo-related hair loss, or who have experienced trauma, such as burns, that prevent hair regrowth.</td>
+                  <td>I had been researching places to send my hair, I was so impressed with the way they handled themselves and the way they use the hair that is donated. I was also very excited that they allowed us to be a part of the wig making process! I’m looking forward to seeing how it turns out! Now I just need my hair to grow out faster so I can donate again! Thank you for all you do to help people in need!</td>
+                </tr>
+              </tbody>
+          </table>    
+        <br>
+
+        <h3>Add a Hair Donation Review</h2>        
+            <form id="addReviewForm"> 
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInputCompany" placeholder="Company">
+                <label for="floatingInputCompany">Company</label>
+              </div>       
+        
+            <div class="form-floating">
+                <textarea class="form-control" id="floatingInputReviewDetails" style="height: 150px"></textarea>
+                <label for="floatingInputReviewDetails">Details</label>
+                   </div> <br>
+
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="floatingTextareaReview" style="height: 150px"></textarea>
+                <label for="floatingTextareaReview">Review</label>
+              </div> 
+
+              <br>
+
+            <div class="horizontal-center">
+                <button type="reset" id="addReview" class="btn btn-primary" value="Reset Form" onclick="addReviewData();">Add Review</button>
+            </div>
+            </form>
+
+        <br>
+     
+        <h3>Subcribe to get updates on new reviews:</h3>
+    <form action="/signup" method="POST" class="centered mt-10 ml-10 mr-10">
+      <div class="form-group">        
+          <label class="form-label" for="firstname">First Name</label>
+          <input class="form-input" type="text" name="firstname" id="firstname"/>
+      </div>
+      <div class="form-group">
+          <label class="form-label" for="lastname">Last Name</label>
+          <input class="form-input" type="text" name="lastname" id="lastname"/>
+      </div>
+      <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="text" name="email" id="email"/>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Submit"/>
+  </form>
+
+    <script>
+        function myFunction() { //filter through the table by keyword
+            var input, filter, found, table, tr, td, i, j;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("reviewTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                    }
+                }
+
+                if (tr[i].id != 'tableHeader'){
+                    if (found) {
+                        tr[i].style.display = "";
+                        found = false;
+                    } else {
+                        tr[i].style.display = "none";
+                    }   
+                }                
+            }   
+        }
+        
+
+        function addReviewData() {
+            var table, row, cell1, cell2, cell3, cell4, cell1Input, cell2Input, cell3Input, cell4Input;
+            table = document.getElementById("reviewTable");
+            row = table.insertRow(4);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+            cell1Input = document.getElementById("floatingInputCompany");            
+            cell2Input = document.getElementById("floatingInputReviewDetails");            
+            cell3Input = document.getElementById("floatingTextareaReview");
+            cell1.innerHTML = cell1Input.value;
+            cell2.innerHTML = cell2Input.value;
+            cell3.innerHTML = cell3Input.value;
+        }
+        </script>
+  
+    </body>
+
+</html>
